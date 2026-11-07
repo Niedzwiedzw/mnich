@@ -1,0 +1,12 @@
+[package]
+name = "mnich"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+anyhow = "1.0.104"
+futures = { version = "0.3.34", features = ["futures-executor"] }
+tracing = "0.1.44"
+tracing-subscriber = { version = "0.3.23", features = ["env-filter"] }
+wgpu = "30.0.1"
+winit = "0.30.13"

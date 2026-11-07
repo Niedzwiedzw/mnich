@@ -22,6 +22,10 @@
         buildInputs = with pkgs; [
           (rust-bin.fromRustupToolchainFile ./rust-toolchain.toml)
           just
+
+          # wgpu
+          wayland
+          libxkbcommon
         ];
         pkgConfigPath = pkgs.lib.makeSearchPathOutput "dev" "lib/pkgconfig" buildInputs;
         ldLibraryPath = pkgs.lib.makeLibraryPath buildInputs;

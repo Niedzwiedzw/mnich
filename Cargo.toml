@@ -5,7 +5,12 @@ edition = "2024"
 
 [dependencies]
 anyhow = "1.0.104"
+derive_more = { version = "2.1.1", features = ["full"] }
+extension-traits = "2.0.3"
 futures = { version = "0.3.34", features = ["futures-executor"] }
+itertools = "0.15.0"
+next_tuple = "0.1.0"
+tap = "1.0.1"
 tracing = "0.1.44"
 tracing-subscriber = { version = "0.3.23", features = ["env-filter"] }
 wgpu = "30.0.1"

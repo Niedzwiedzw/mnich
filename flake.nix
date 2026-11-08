@@ -23,9 +23,23 @@
           (rust-bin.fromRustupToolchainFile ./rust-toolchain.toml)
           just
 
-          # wgpu
+          # wgpu, based on https://github.com/bevyengine/bevy/blob/latest/docs/linux_dependencies.md#nix
           wayland
           libxkbcommon
+          vulkan-loader
+          libglvnd
+          # Audio (Linux only)
+          alsa-lib
+          # Cross Platform 3D Graphics API
+          vulkan-loader
+          # For debugging around vulkan
+          vulkan-tools
+          # Other dependencies
+          libudev-zero
+          libx11
+          libxcursor
+          libxi
+          libxrandr
         ];
         pkgConfigPath = pkgs.lib.makeSearchPathOutput "dev" "lib/pkgconfig" buildInputs;
         ldLibraryPath = pkgs.lib.makeLibraryPath buildInputs;

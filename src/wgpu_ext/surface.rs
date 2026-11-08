@@ -1,8 +1,8 @@
 use {
     crate::wgpu_ext::global_context::Gpu,
     anyhow::{Context, Result},
-    std::sync::Arc,
-    tap::{Tap, TapFallible},
+    std::{num::NonZeroU32, sync::Arc},
+    tap::Tap,
     winit::window::Window,
 };
 
@@ -27,6 +27,13 @@ impl ConfiguredSurface {
             .map(|(surface, configuration)| (surface.tap(|s| s.configure(&gpu.device, &configuration)), configuration))
             .map(|(surface, configuration)| Self { surface, configuration })
     }
+
+    pub fn resize(&mut self, width: NonZeroU32, height: NonZeroU32) {
+        self.configuration.width = width.get();
+        self.configuration.height = height.get();
+        self.surface
+            .configure(&Gpu::global().device, &self.configuration);
+    }
 }
 
 pub mod render_attachment_surface {
@@ -38,7 +45,7 @@ pub mod render_attachment_surface {
         winit::window::Window,
     };
 
-    #[derive(Debug, derive_more::Deref)]
+    #[derive(Debug, derive_more::Deref, derive_more::DerefMut)]
     pub struct RenderAttachmentSurface(super::ConfiguredSurface);
 
     impl RenderAttachmentSurface {

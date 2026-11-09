@@ -34,8 +34,6 @@
           vulkan-loader
           # For debugging around vulkan
           vulkan-tools
-          # Other dependencies
-          libudev-zero
           libx11
           libxcursor
           libxi

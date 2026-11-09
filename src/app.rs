@@ -49,9 +49,7 @@ pub struct App {
 }
 
 impl ApplicationHandler for App {
-    fn resumed(&mut self, _event_loop: &ActiveEventLoop) {
-        unreachable!("InitWindow mode should not be used directly");
-    }
+    fn resumed(&mut self, _event_loop: &ActiveEventLoop) {}
 
     #[instrument(skip(self, event_loop, _window_id))]
     fn window_event(&mut self, event_loop: &ActiveEventLoop, _window_id: window::WindowId, event: WindowEvent) {

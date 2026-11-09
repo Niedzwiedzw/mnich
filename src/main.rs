@@ -30,7 +30,6 @@ fn main() -> Result<()> {
                     .pipe(futures::executor::block_on)
                     .context("initializing app")
                     .tap_err(|e| tracing::error!("{e:#?}"))
-                    .tap_err(|_| event_loop.exit())
                     .ok()
                 })
                 .context("running an app")
